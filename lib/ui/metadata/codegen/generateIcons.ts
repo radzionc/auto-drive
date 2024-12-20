@@ -15,7 +15,7 @@ interface GenerateIconMetaTagsParams {
   codeDirectory: string
 }
 
-export const generateIconMetaTags = async ({
+export const generateIcons = async ({
   lightModeIconPath,
   darkModeIconPath,
   manifestPath,

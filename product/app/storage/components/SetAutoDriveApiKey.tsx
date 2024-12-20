@@ -9,8 +9,8 @@ import { useMutation } from '@tanstack/react-query'
 import { createAutoDriveApi, Scope, apiCalls } from '@autonomys/auto-drive'
 import { MatchQuery } from '@lib/ui/query/components/MatchQuery'
 import { getErrorMessage } from '@lib/utils/getErrorMessage'
-import { DatabaseIcon } from '@lib/ui/icons/DatabaseIcon'
 import styled from 'styled-components'
+import { ProductLogo } from '../../product/ProductLogo'
 
 const Content = styled.div`
   ${vStack({
@@ -57,14 +57,7 @@ export const SetAutoDriveApiKey = () => {
   return (
     <Center>
       <Content>
-        <Text
-          centerVertically={{ gap: 8 }}
-          color="contrast"
-          size={22}
-          weight={600}
-        >
-          <DatabaseIcon /> Blockchain Storage
-        </Text>
+        <ProductLogo />
         <InputDebounce
           value={inputValue}
           onChange={setInputValue}
