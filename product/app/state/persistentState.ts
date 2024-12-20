@@ -4,7 +4,7 @@ import { createPersistentStateHook } from '@lib/ui/state/createPersistentStateHo
 import { createPersistentStateManager } from '@lib/ui/state/createPersistentStateManager'
 
 export enum PersistentStateKey {
-  ThemePreference = 'themePreference',
+  AutoDriveApiKey = 'autoDriveApiKey',
 }
 
 const persistentStorage =
