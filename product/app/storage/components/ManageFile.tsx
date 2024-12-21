@@ -1,5 +1,3 @@
-import { ObjectSummary } from '@autonomys/auto-drive'
-import { ComponentWithValueProps } from '@lib/ui/props'
 import styled from 'styled-components'
 import { Text } from '@lib/ui/text'
 import { FileIcon } from '@lib/ui/icons/FileIcon'
@@ -9,6 +7,7 @@ import { horizontalPadding } from '@lib/ui/css/horizontalPadding'
 import { HStack, hStack } from '@lib/ui/css/stack'
 import { DeleteFile } from './DeleteFile'
 import { DownloadFile } from './DownloadFile'
+import { useCurrentFile } from '../state/currentFile'
 
 const Indicator = styled(FileIcon)`
   color: ${getColor('textSupporting')};
@@ -24,18 +23,18 @@ const Container = styled.div`
   ${hStack({ alignItems: 'center', justifyContent: 'space-between' })};
 `
 
-export const ManageFile = ({
-  value,
-}: ComponentWithValueProps<ObjectSummary>) => {
+export const ManageFile = () => {
+  const { name, headCid } = useCurrentFile()
+
   return (
     <Container>
       <Text centerVertically={{ gap: 8 }}>
         <Indicator />
-        {value.name}
+        {name ?? headCid}
       </Text>
       <HStack alignItems="center" gap={4}>
         <DownloadFile />
-        <DeleteFile value={value.headCid} />
+        <DeleteFile />
       </HStack>
     </Container>
   )

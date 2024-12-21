@@ -5,6 +5,7 @@ import { Spinner } from '@lib/ui/loaders/Spinner'
 import { VStack } from '@lib/ui/css/stack'
 import { ManageFile } from './ManageFile'
 import { useFilesQuery } from '../queries/useFilesQuery'
+import { CurrentFileProvider } from '../state/currentFile'
 
 export const ManageFiles = () => {
   const query = useFilesQuery()
@@ -17,7 +18,9 @@ export const ManageFiles = () => {
       success={(data) => (
         <VStack gap={8}>
           {data.map((file) => (
-            <ManageFile key={file.headCid} value={file} />
+            <CurrentFileProvider value={file} key={file.headCid}>
+              <ManageFile />
+            </CurrentFileProvider>
           ))}
         </VStack>
       )}

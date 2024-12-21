@@ -13,6 +13,8 @@ import { UploadFileInputContent } from './UploadFileInputContent'
 import { CloudUploadIcon } from '@lib/ui/icons/CloudUploadIcon'
 import { uploadFileFromInput } from '@autonomys/auto-drive'
 import { useAutoDriveApi } from '../state/autoDriveApi'
+import { useInvalidateQueries } from '@lib/ui/query/hooks/useInvalidateQueries'
+import { filesQueryKey } from '../queries/useFilesQuery'
 
 const Container = styled.div`
   width: 100%;
@@ -41,10 +43,12 @@ const PendingContainer = styled(TakeWholeSpace)`
 export const UploadFile = () => {
   const api = useAutoDriveApi()
 
+  const invalidate = useInvalidateQueries()
+
   const { mutate, status } = useMutation({
-    mutationFn: async (file: File) => {
-      const result = await uploadFileFromInput(api, file).promise
-      console.log(result)
+    mutationFn: (file: File) => uploadFileFromInput(api, file).promise,
+    onSuccess: () => {
+      invalidate(filesQueryKey)
     },
   })
 
