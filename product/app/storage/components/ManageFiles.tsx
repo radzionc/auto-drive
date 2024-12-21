@@ -1,29 +1,35 @@
-import { MatchQuery } from '@lib/ui/query/components/MatchQuery'
 import { Text } from '@lib/ui/text'
-import { getErrorMessage } from '@lib/utils/getErrorMessage'
-import { Spinner } from '@lib/ui/loaders/Spinner'
-import { VStack } from '@lib/ui/css/stack'
 import { ManageFile } from './ManageFile'
 import { useFilesQuery } from '../queries/useFilesQuery'
 import { CurrentFileProvider } from '../state/currentFile'
+import { usePaginatedResultItems } from '@lib/ui/query/hooks/usePaginatedResultItems'
+import { PaginatedView } from '@lib/ui/pagination/PaginatedView'
+import { isEmpty } from '@lib/utils/array/isEmpty'
+import { VStack } from '@lib/ui/css/stack'
 
 export const ManageFiles = () => {
-  const query = useFilesQuery()
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, hasNextPage } =
+    useFilesQuery()
+
+  const items = usePaginatedResultItems(data, (response) => response.rows)
 
   return (
-    <MatchQuery
-      value={query}
-      error={(error) => <Text color="alert">{getErrorMessage(error)}</Text>}
-      pending={() => <Spinner />}
-      success={(data) => (
-        <VStack gap={8}>
-          {data.map((file) => (
+    <VStack gap={16}>
+      <PaginatedView
+        onRequestToLoadMore={fetchNextPage}
+        isLoading={isLoading || isFetchingNextPage}
+        hasNextPage={hasNextPage}
+      >
+        {isEmpty(items) && !isLoading ? (
+          <Text>You have no files 😴</Text>
+        ) : (
+          items.map((file) => (
             <CurrentFileProvider value={file} key={file.headCid}>
               <ManageFile />
             </CurrentFileProvider>
-          ))}
-        </VStack>
-      )}
-    />
+          ))
+        )}
+      </PaginatedView>
+    </VStack>
   )
 }
