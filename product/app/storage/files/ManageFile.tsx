@@ -20,7 +20,7 @@ const Container = styled.div`
   ${borderRadius.m};
   ${horizontalPadding(16)};
   padding-right: 8px;
-  ${hStack({ alignItems: 'center', justifyContent: 'space-between' })};
+  ${hStack({ alignItems: 'center', justifyContent: 'space-between', gap: 20 })};
 `
 
 export const ManageFile = () => {
@@ -28,9 +28,11 @@ export const ManageFile = () => {
 
   return (
     <Container>
-      <Text centerVertically={{ gap: 8 }}>
+      <Text style={{ flexWrap: 'nowrap' }} centerVertically={{ gap: 8 }}>
         <Indicator />
-        {name ?? headCid}
+        <Text as="span" cropped>
+          {name ?? headCid}
+        </Text>
       </Text>
       <HStack alignItems="center" gap={4}>
         <DownloadFile />
