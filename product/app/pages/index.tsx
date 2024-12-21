@@ -1,11 +1,3 @@
-import { AutoDriveApiKeyGuard } from '../storage/components/AutoDriveApiKeyGuard'
-import { ManageStorage } from '../storage/components/ManageStorage'
-import { ClientOnly } from '@lib/ui/base/ClientOnly'
+import { StoragePage } from '../storage/components/StoragePage'
 
-export default () => (
-  <ClientOnly>
-    <AutoDriveApiKeyGuard>
-      <ManageStorage />
-    </AutoDriveApiKeyGuard>
-  </ClientOnly>
-)
+export default StoragePage
