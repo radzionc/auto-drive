@@ -4,8 +4,8 @@ import { verticalPadding } from '@lib/ui/css/verticalPadding'
 import { HStack, VStack } from '@lib/ui/css/stack'
 import { ProductLogo } from '../../product/ProductLogo'
 import { ExitStorage } from './ExitStorage'
-import { UploadFile } from './UploadFile'
-import { ManageFiles } from './ManageFiles'
+import { ManageFiles } from '../files/ManageFiles'
+import { UploadFile } from '../upload/UploadFile'
 
 export const Container = styled.div`
   ${centeredContentColumn({

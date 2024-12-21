@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { apiCalls, ObjectSummary, Scope } from '@autonomys/auto-drive'
-import { useAutoDriveApi } from '../state/autoDriveApi'
+import { useAutoDriveApi } from '../../state/autoDriveApi'
 import { PaginatedResult } from '@autonomys/auto-drive/dist/api/models/common'
 
 export const filesQueryKey = ['files']
@@ -20,14 +20,11 @@ export const useFilesQuery = () => {
       const offset = allPages.length * limit
       return offset < totalCount ? offset : null
     },
-    queryFn: async ({ pageParam }) => {
-      const response = await apiCalls.getRoots(api, {
+    queryFn: async ({ pageParam }) =>
+      apiCalls.getRoots(api, {
         scope: Scope.User,
         limit,
         offset: pageParam,
-      })
-
-      return response
-    },
+      }),
   })
 }

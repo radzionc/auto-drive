@@ -3,7 +3,7 @@ import { IconButton } from '@lib/ui/buttons/IconButton'
 import { DownloadIcon } from '@lib/ui/icons/DownloadIcon'
 import { useMutation } from '@tanstack/react-query'
 import { useAutoDriveApi } from '../state/autoDriveApi'
-import { useCurrentFile } from '../state/currentFile'
+import { useCurrentFile } from './state/currentFile'
 
 export const DownloadFile = () => {
   const { name, headCid, type } = useCurrentFile()

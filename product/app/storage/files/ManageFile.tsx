@@ -7,7 +7,7 @@ import { horizontalPadding } from '@lib/ui/css/horizontalPadding'
 import { HStack, hStack } from '@lib/ui/css/stack'
 import { DeleteFile } from './DeleteFile'
 import { DownloadFile } from './DownloadFile'
-import { useCurrentFile } from '../state/currentFile'
+import { useCurrentFile } from './state/currentFile'
 
 const Indicator = styled(FileIcon)`
   color: ${getColor('textSupporting')};

@@ -11,6 +11,7 @@ import { MatchQuery } from '@lib/ui/query/components/MatchQuery'
 import { getErrorMessage } from '@lib/utils/getErrorMessage'
 import styled from 'styled-components'
 import { ProductLogo } from '../../product/ProductLogo'
+import { isWrongApiKey } from '../utils/isWrongApiKey'
 
 const Content = styled.div`
   ${vStack({
@@ -75,7 +76,7 @@ export const SetAutoDriveApiKey = () => {
             value={mutationState}
             error={(error) => (
               <Text color="alert">
-                {error.message.includes('Unauthorized')
+                {isWrongApiKey(error)
                   ? 'Wrong API Key'
                   : getErrorMessage(error)}
               </Text>

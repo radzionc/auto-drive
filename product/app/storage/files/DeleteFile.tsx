@@ -4,8 +4,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useAutoDriveApi } from '../state/autoDriveApi'
 import { apiCalls } from '@autonomys/auto-drive'
 import { useInvalidateQueries } from '@lib/ui/query/hooks/useInvalidateQueries'
-import { filesQueryKey } from '../queries/useFilesQuery'
-import { useCurrentFile } from '../state/currentFile'
+import { filesQueryKey } from './queries/useFilesQuery'
+import { useCurrentFile } from './state/currentFile'
 
 export const DeleteFile = () => {
   const { headCid } = useCurrentFile()

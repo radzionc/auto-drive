@@ -8,13 +8,9 @@ import { TakeWholeSpace } from '@lib/ui/css/takeWholeSpace'
 import { interactive } from '@lib/ui/css/interactive'
 import { transition } from '@lib/ui/css/transition'
 import { borderRadius } from '@lib/ui/css/borderRadius'
-import { useMutation } from '@tanstack/react-query'
-import { UploadFileInputContent } from './UploadFileInputContent'
 import { CloudUploadIcon } from '@lib/ui/icons/CloudUploadIcon'
-import { uploadFileFromInput } from '@autonomys/auto-drive'
-import { useAutoDriveApi } from '../state/autoDriveApi'
-import { useInvalidateQueries } from '@lib/ui/query/hooks/useInvalidateQueries'
-import { filesQueryKey } from '../queries/useFilesQuery'
+import { useUploadFileMutation } from './mutations/useUploadFileMutation'
+import { UploadFileInputContent } from './UploadFileInputContent'
 
 const Container = styled.div`
   width: 100%;
@@ -41,16 +37,7 @@ const PendingContainer = styled(TakeWholeSpace)`
 `
 
 export const UploadFile = () => {
-  const api = useAutoDriveApi()
-
-  const invalidate = useInvalidateQueries()
-
-  const { mutate, status } = useMutation({
-    mutationFn: (file: File) => uploadFileFromInput(api, file).promise,
-    onSuccess: () => {
-      invalidate(filesQueryKey)
-    },
-  })
+  const { mutate, status } = useUploadFileMutation()
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
