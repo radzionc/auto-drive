@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 import { centeredContentColumn } from '@lib/ui/css/centeredContentColumn'
 import { verticalPadding } from '@lib/ui/css/verticalPadding'
-import { HStack } from '@lib/ui/css/stack'
+import { HStack, VStack } from '@lib/ui/css/stack'
 import { ProductLogo } from '../../product/ProductLogo'
 import { ExitStorage } from './ExitStorage'
+import { UploadFile } from './UploadFile'
+import { ManageFiles } from './ManageFiles'
 
 export const Container = styled.div`
   ${centeredContentColumn({
-    contentMaxWidth: 800,
+    contentMaxWidth: 600,
   })}
 
   ${verticalPadding(80)}
@@ -15,9 +17,13 @@ export const Container = styled.div`
 
 export const ManageStorage = () => (
   <Container>
-    <HStack fullWidth alignItems="center" justifyContent="space-between">
-      <ProductLogo />
-      <ExitStorage />
-    </HStack>
+    <VStack gap={60}>
+      <HStack fullWidth alignItems="center" justifyContent="space-between">
+        <ProductLogo />
+        <ExitStorage />
+      </HStack>
+      <UploadFile />
+      <ManageFiles />
+    </VStack>
   </Container>
 )
