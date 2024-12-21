@@ -63,7 +63,7 @@ export const UploadFile = () => {
         <Input {...getRootProps()}>
           <input {...getInputProps()} />
           <UploadFileInputContent
-            title="Upload to Blockchain"
+            title="Upload to DSN"
             subTitle="Drop it here or click to select"
             icon={<CloudUploadIcon />}
           >
