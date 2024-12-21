@@ -4,6 +4,6 @@ import { Text } from '@lib/ui/text'
 export const ProductLogo = () => (
   <Text centerVertically={{ gap: 8 }} color="contrast" size={22} weight={600}>
     <DatabaseIcon />
-    Blockchain Storage
+    Distributed Storage
   </Text>
 )

@@ -66,7 +66,7 @@ export const SetAutoDriveApiKey = () => {
               value={value}
               onValueChange={onChange}
               autoFocus
-              placeholder="Enter your Auto-Drive API key"
+              placeholder="Enter your Auto-Drive API key to continue"
             />
           )}
         />
