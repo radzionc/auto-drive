@@ -11,6 +11,7 @@ import { getHoverVariant } from '@lib/ui/theme/getHoverVariant'
 import { Tooltip } from '../tooltips/Tooltip'
 import { MergeRefs } from '../base/MergeRefs'
 import { interactive } from '../css/interactive'
+import { Spinner } from '../loaders/Spinner'
 
 export const iconButtonSizes = ['s', 'm', 'l'] as const
 export type IconButtonSize = (typeof iconButtonSizes)[number]
@@ -39,6 +40,7 @@ type IconButtonContainerParams = {
   size?: IconButtonSize
   kind?: IconButtonKind
   isDisabled?: boolean
+  isPending?: boolean
 }
 
 export const iconButtonContainer = ({
@@ -117,21 +119,21 @@ export type IconButtonProps = Omit<
   title: string
   as?: React.ElementType
   isDisabled?: boolean | string
+  isPending?: boolean
 }
 
 export function IconButton({
   icon,
   isDisabled = false,
+  isPending,
   onClick,
   ...rest
 }: IconButtonProps) {
   const containerProps = {
     isDisabled: !!isDisabled,
-    onClick: isDisabled ? undefined : onClick,
+    onClick: isDisabled || isPending ? undefined : onClick,
     ...rest,
   }
-
-  const buttonContent = <Container {...containerProps}>{icon}</Container>
 
   if (typeof isDisabled === 'string') {
     return (
@@ -151,5 +153,7 @@ export function IconButton({
     )
   }
 
-  return buttonContent
+  return (
+    <Container {...containerProps}>{isPending ? <Spinner /> : icon}</Container>
+  )
 }

@@ -27,7 +27,6 @@ const Container = styled.div`
 export const ManageFile = ({
   value,
 }: ComponentWithValueProps<ObjectSummary>) => {
-  console.log(value)
   return (
     <Container>
       <Text centerVertically={{ gap: 8 }}>
@@ -36,7 +35,7 @@ export const ManageFile = ({
       </Text>
       <HStack alignItems="center" gap={4}>
         <DownloadFile />
-        <DeleteFile />
+        <DeleteFile value={value.headCid} />
       </HStack>
     </Container>
   )
