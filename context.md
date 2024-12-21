@@ -8,6 +8,7 @@ The app has two views:
 - **Manage Files**: The user can upload, download, and delete files. These files are stored on the Distributed Storage Network.
 
 The app is deployed to https://storage.radzion.com
+The YouTube video about how the project is built is available at https://youtu.be/OinVy0VxhGg
 
 ## Tech Stack
 
